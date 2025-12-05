@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>شكراً لك - صيدلية الشفاء</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+        <link
+      rel="stylesheet"
+      href="./style.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --secondary: #115e59;
+        --bg: #f3f4f6;
+        --text: #333;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body {
+        background-color: var(--bg);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .success-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 90%;
+        animation: fadeIn 0.8s ease;
+      }
+
+      .icon-box {
+        width: 100px;
+        height: 100px;
+        background: #dcfce7;
+        color: #16a34a;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        margin: 0 auto 20px auto;
+        /* أنيميشن النبض */
+        animation: pulse 2s infinite;
+      }
+
+      h1 {
+        color: var(--secondary);
+        margin-bottom: 10px;
+        font-size: 2rem;
+      }
+      p {
+        color: #666;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .order-details {
+        background: #f9fafb;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        border: 1px dashed #ddd;
+      }
+
+      .btn-home {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+        box-shadow: 0 5px 15px rgba(13, 148, 136, 0.3);
+      }
+
+      .btn-home:hover {
+        transform: translateY(-3px);
+        background: var(--secondary);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(22, 163, 74, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="success-card">
+      <div class="icon-box">
+        <i class="fas fa-check"></i>
+      </div>
+
+      <h1>تم استلام طلبك بنجاح! 🎉</h1>
+      <p>
+        شكراً لثقتك في صيدلية الشفاء. <br />
+        سيتم تجهيز طلبك وتوصيله إليك في أسرع وقت.
+      </p>
+
+      <div class="order-details">
+        <p style="margin: 0; font-weight: bold; color: #333">
+          رقم الطلب: #<span id="order-id"></span>
+        </p>
+        <p style="margin: 5px 0 0 0; font-size: 0.9rem">
+          وقت التوصيل المتوقع: خلال 60 دقيقة
+        </p>
+      </div>
+
+      <a href="landing.html" class="btn-home">
+        <i class="fas fa-arrow-right" style="margin-left: 5px"></i> العودة
+        للرئيسية
+      </a>
+    </div>
+
+    <script>
+      // توليد رقم طلب عشوائي عشان يبان حقيقي
+      document.getElementById("order-id").innerText = Math.floor(
+        Math.random() * 100000
+      );
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>

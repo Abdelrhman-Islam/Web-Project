@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>العروض الحصرية - صيدلية الشفاء</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+        <link
+      rel="stylesheet"
+      href="./style.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --danger: #ef4444;
+        --bg: #f3f4f6;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: var(--bg);
+      }
+      .navbar {
+        background: white;
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .banner {
+        background: linear-gradient(45deg, #ff6b6b, #ee5253);
+        color: white;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .banner h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+      .banner p {
+        font-size: 1.2rem;
+        margin-top: 10px;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .offers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .offer-card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        position: relative;
+        border: 2px solid transparent;
+        transition: 0.3s;
+      }
+      .offer-card:hover {
+        border-color: var(--danger);
+        transform: translateY(-5px);
+      }
+
+      .discount-tag {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--danger);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        z-index: 10;
+      }
+
+      .product-img {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+        margin-bottom: 15px;
+      }
+      .old-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 0.9rem;
+      }
+      .new-price {
+        color: var(--danger);
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .btn-add {
+        width: 100%;
+        background: var(--danger);
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+<nav class="navbar">
+    <a href="landing.html" class="logo">
+        <i class="fas fa-heartbeat"></i>
+        صيدليتي
+    </a>
+
+    <div class="search-box">
+        <input type="text" placeholder="ابحث عن دواء...">
+        <i class="fas fa-search" style="color: #999;"></i>
+    </div>
+
+    <div class="nav-icons">
+        <a href="profile.html">حسابي</a> 
+        
+        <a href="cart.html" class="cart-icon-link">
+            <i class="fas fa-shopping-cart" style="color:var(--secondary-color); font-size:1.2rem;"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+    </div>
+</nav>
+
+    <div class="banner">
+      <h1>🔥 عروض الجمعة البيضاء 🔥</h1>
+      <p>خصومات تصل إلى 50% على مستحضرات التجميل والفيتامينات</p>
+    </div>
+
+    <div class="container">
+      <div class="offers-grid">
+        <div class="offer-card">
+          <div class="discount-tag">-25%</div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3050/3050252.png"
+            class="product-img"
+          />
+          <h3>مجموعة العناية بالبشرة</h3>
+          <div>
+            <span class="old-price">600 ج.م</span>
+            <span class="new-price">450 ج.م</span>
+          </div>
+          <button
+            class="btn-add"
+            onclick="addToCart('offer1', 'مجموعة العناية', 450, 'https://cdn-icons-png.flaticon.com/512/3050/3050252.png')"
+          >
+            ألحق العرض
+          </button>
+        </div>
+
+        <div class="offer-card">
+          <div class="discount-tag">-50%</div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3209/3209968.png"
+            class="product-img"
+          />
+          <h3>فيتامينات مستوردة</h3>
+          <div>
+            <span class="old-price">300 ج.م</span>
+            <span class="new-price">150 ج.م</span>
+          </div>
+          <button
+            class="btn-add"
+            onclick="addToCart('offer2', 'فيتامينات', 150, 'https://cdn-icons-png.flaticon.com/512/3209/3209968.png')"
+          >
+            ألحق العرض
+          </button>
+        </div>
+
+        <div class="offer-card">
+          <div class="discount-tag">-15%</div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3557/3557455.png"
+            class="product-img"
+          />
+          <h3>شامبو طبيعي</h3>
+          <div>
+            <span class="old-price">120 ج.م</span>
+            <span class="new-price">100 ج.م</span>
+          </div>
+          <button
+            class="btn-add"
+            onclick="addToCart('offer3', 'شامبو طبيعي', 100, 'https://cdn-icons-png.flaticon.com/512/3557/3557455.png')"
+          >
+            ألحق العرض
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>تفاصيل الطلب #1023 - Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --secondary: #115e59;
+        --bg: #f3f4f6;
+        --white: #fff;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: var(--bg);
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar (Standard) */
+      .sidebar {
+        width: 250px;
+        background: var(--secondary);
+        color: white;
+        padding: 20px;
+      }
+      .main {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      /* Grid Layout */
+      .details-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+      }
+      .card h3 {
+        margin-top: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        color: var(--secondary);
+        font-size: 1.1rem;
+      }
+
+      /* Product Table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: right;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+      }
+      th {
+        color: #666;
+      }
+
+      /* Status Box */
+      .status-select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        outline: none;
+      }
+      .btn-update {
+        width: 100%;
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+      }
+      .info-label {
+        color: #777;
+      }
+
+      @media (max-width: 768px) {
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2 style="margin-bottom: 40px">لوحة التحكم</h2>
+      <a
+        href="admin.html"
+        style="
+          color: white;
+          display: block;
+          margin-bottom: 15px;
+          text-decoration: none;
+        "
+        >الرئيسية</a
+      >
+      <a
+        href="#"
+        style="
+          color: white;
+          display: block;
+          margin-bottom: 15px;
+          font-weight: bold;
+        "
+        >الطلبات</a
+      >
+    </aside>
+
+    <main class="main">
+      <div class="page-header">
+        <h2>تفاصيل الطلب <span style="color: #777">#1023</span></h2>
+        <a
+          href="admin.html"
+          style="
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+          "
+          >عودة للقائمة <i class="fas fa-arrow-left"></i
+        ></a>
+      </div>
+
+      <div class="details-grid">
+        <div class="order-items-section">
+          <div class="card">
+            <h3>المنتجات المطلوبة</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>السعر</th>
+                  <th>الكمية</th>
+                  <th>الإجمالي</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 10px">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/883/883407.png"
+                        width="30"
+                      />
+                      بنادول إكسترا
+                    </div>
+                  </td>
+                  <td>45 ج.م</td>
+                  <td>2</td>
+                  <td>90 ج.م</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 10px">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/3014/3014234.png"
+                        width="30"
+                      />
+                      فيتامين سي
+                    </div>
+                  </td>
+                  <td>90 ج.م</td>
+                  <td>1</td>
+                  <td>90 ج.م</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="text-align: left; margin-top: 20px">
+              <h4 style="margin: 0">
+                الإجمالي الكلي:
+                <span style="color: var(--primary); font-size: 1.3rem"
+                  >180 ج.م</span
+                >
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="customer-info-section">
+          <div class="card">
+            <h3>حالة الطلب</h3>
+            <select class="status-select">
+              <option selected>قيد الانتظار</option>
+              <option>جاري التجهيز</option>
+              <option>خرج للتوصيل</option>
+              <option>تم التسليم</option>
+              <option style="color: red">ملغي</option>
+            </select>
+            <button
+              class="btn-update"
+              onclick="alert('تم تحديث حالة الطلب ✅')"
+            >
+              تحديث الحالة
+            </button>
+          </div>
+
+          <div class="card">
+            <h3>بيانات العميل</h3>
+            <div class="info-row">
+              <span class="info-label">الاسم:</span>
+              <strong>محمد علي</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">الهاتف:</span>
+              <strong>01012345678</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">العنوان:</span>
+              <span>ش الثورة، مدينة نصر، الدور الثالث</span>
+            </div>
+            <div
+              style="
+                margin-top: 15px;
+                border-top: 1px dashed #eee;
+                padding-top: 10px;
+              "
+            >
+              <span class="info-label">ملاحظات:</span>
+              <p style="margin: 5px 0 0; font-size: 0.9rem; color: #555">
+                يرجى الاتصال قبل الوصول بـ 10 دقايق.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

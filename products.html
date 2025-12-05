@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتجر - صيدلية الشفاء</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS Variables & Reset */
+        :root { --primary: #0d9488; --secondary: #115e59; --text: #333; --bg: #f3f4f6; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
+        body { background-color: var(--bg); color: var(--text); }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navbar */
+        .navbar { background: var(--white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; gap: 10px; align-items: center; }
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .nav-icons a { font-weight: bold; color: #555; transition: 0.3s; }
+        .nav-icons a:hover { color: var(--primary); }
+        .cart-badge { background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; position: absolute; top: -8px; right: -8px; }
+
+        /* Product Grid */
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .product-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid transparent; }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        
+        .img-link { display: block; width: 100%; background: #fff; border-bottom: 1px solid #f0f0f0; }
+        .product-img { width: 100%; height: 200px; object-fit: contain; padding: 1rem; display: block; }
+        
+        .product-info { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+        .product-title { font-size: 1rem; font-weight: bold; margin-bottom: 10px; transition:0.2s; }
+        .product-title:hover { color: var(--primary); }
+        .price-box { margin-top: auto; margin-bottom: 15px; font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+        .add-btn { width: 100%; padding: 10px; background: var(--white); color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .add-btn:hover { background: var(--primary); color: var(--white); }
+        
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 15px; } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="landing.html" class="logo"><i class="fas fa-heartbeat"></i> صيدليتي</a>
+        <div class="nav-icons">
+            <a href="profile.html">حسابي</a>
+            <a href="cart.html" style="position: relative;">
+                <i class="fas fa-shopping-cart" style="color: var(--secondary); font-size: 1.2rem;"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 style="margin-bottom: 20px; color: var(--secondary); border-right: 5px solid var(--primary); padding-right: 15px;">أحدث المنتجات</h2>
+        
+        <div class="products-grid">
+            <article class="product-card">
+                <a href="product-details.html?id=1" class="img-link">
+                    <img src="https://m.media-amazon.com/images/I/71p4qX085mL._AC_SX679_.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=1"><h3 class="product-title">بنادول إكسترا - 24 قرص</h3></a>
+                    <div class="price-box">45 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(1)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=2" class="img-link">
+                    <img src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/ala/ala30202/l/37.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=2"><h3 class="product-title">فيتامين سي فوار</h3></a>
+                    <div class="price-box">90 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(2)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=3" class="img-link">
+                    <img src="https://m.media-amazon.com/images/I/61ofCkBUfvL._AC_SX679_.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=3"><h3 class="product-title">كريم سودو للأطفال</h3></a>
+                    <div class="price-box">120 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(3)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=4" class="img-link">
+                    <img src="https://icare.ps/upload/11-2023/product/IMG_0509-IDX.png" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=4"><h3 class="product-title">واقي شمس 50+</h3></a>
+                    <div class="price-box">480 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(4)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+             <article class="product-card">
+                <a href="product-details.html?id=5" class="img-link">
+                    <img src="https://m.media-amazon.com/images/I/61lmX6D-dOL._AC_SX522_.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=5"><h3 class="product-title">غسول الفم ليسترين</h3></a>
+                    <div class="price-box">85 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(5)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=6" class="img-link">
+                    <img src="https://m.media-amazon.com/images/I/61sUR1qP-EL._AC_SY741_.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=6"><h3 class="product-title">ترمومتر ديجيتال</h3></a>
+                    <div class="price-box">150 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(6)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=7" class="img-link">
+                    <img src="https://dwaprices.com/upload/1739098230.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=7"><h3 class="product-title">دواء كحة جوافة</h3></a>
+                    <div class="price-box">35 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(7)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=8" class="img-link">
+                    <img src="https://m.media-amazon.com/images/I/51eaJXWkDFL._AC_SX522_.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=8"><h3 class="product-title">شامبو ضد القشرة</h3></a>
+                    <div class="price-box">110 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(8)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <span style="position: absolute; top:10px; right:10px; background:#ef4444; color:white; padding:4px 10px; border-radius:20px; font-size:0.8rem; font-weight:bold; z-index:10;">-15%</span>
+                <a href="product-details.html?id=9" class="img-link">
+                    <img src="https://cdn.chefaa.com/filters:format(webp)/fit-in/718x718/public/uploads/products/1593946862vitamin-omega-3-fish-oiljpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=9"><h3 class="product-title">أوميجا 3 بلس</h3></a>
+                    <div class="price-box">
+                        <span>180 ج.م</span>
+                        <span style="text-decoration: line-through; color:#999; font-size:0.9rem; margin-right:10px;">210</span>
+                    </div>
+                    <button class="add-btn" onclick="addToCart(9)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <a href="product-details.html?id=10" class="img-link">
+                    <img src="https://citypharmaeg.com/wp-content/uploads/2024/10/IMG-20241002-WA0031.jpg" class="product-img">
+                </a>
+                <div class="product-info">
+                    <a href="product-details.html?id=10"><h3 class="product-title">بلاستر طبي</h3></a>
+                    <div class="price-box">40 ج.م</div>
+                    <button class="add-btn" onclick="addToCart(10)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

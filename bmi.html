@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>حاسبة مؤشر كتلة الجسم (BMI)</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --bg: #f3f4f6;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .calculator-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+      }
+
+      h1 {
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      p {
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        text-align: right;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        outline: none;
+        transition: 0.3s;
+      }
+      .input-group input:focus {
+        border-color: var(--primary);
+      }
+
+      .btn-calc {
+        width: 100%;
+        background: var(--primary);
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-calc:hover {
+        background: #115e59;
+      }
+
+      .result-box {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f0fdfa;
+        border-radius: 10px;
+        display: none; /* مخفي في الأول */
+      }
+      .bmi-score {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--primary);
+        display: block;
+        margin-bottom: 10px;
+      }
+      .bmi-status {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .back-btn {
+        margin-top: 20px;
+        display: inline-block;
+        color: #777;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator-card">
+      <h1>حاسبة صحتي (BMI)</h1>
+      <p>احسب مؤشر كتلة الجسم لتعرف وزنك المثالي</p>
+
+      <div class="input-group">
+        <label>الوزن (كجم)</label>
+        <input type="number" id="weight" placeholder="مثال: 75" />
+      </div>
+
+      <div class="input-group">
+        <label>الطول (سم)</label>
+        <input type="number" id="height" placeholder="مثال: 175" />
+      </div>
+
+      <button class="btn-calc" onclick="calculateBMI()">احسب النتيجة</button>
+
+      <div class="result-box" id="result">
+        <span class="bmi-score" id="score">00.0</span>
+        <div class="bmi-status" id="status">الوزن طبيعي</div>
+        <p
+          id="advice"
+          style="font-size: 0.9rem; margin-top: 10px; color: #555"
+        ></p>
+      </div>
+
+      <a href="landing.html" class="back-btn">العودة للرئيسية</a>
+    </div>
+
+    <script>
+      function calculateBMI() {
+        let weight = parseFloat(document.getElementById("weight").value);
+        let height = parseFloat(document.getElementById("height").value) / 100; // تحويل لمتر
+
+        if (!weight || !height) {
+          alert("يرجى إدخال الوزن والطول بشكل صحيح");
+          return;
+        }
+
+        let bmi = (weight / (height * height)).toFixed(1);
+        let status = "";
+        let color = "";
+        let advice = "";
+
+        if (bmi < 18.5) {
+          status = "نحافة";
+          color = "#f59e0b";
+          advice = "ينصح بزيادة السعرات الحرارية ومراجعة أخصائي تغذية.";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+          status = "وزن مثالي";
+          color = "#10b981";
+          advice = "ممتاز! حافظ على نظامك الغذائي والرياضي.";
+        } else if (bmi >= 25 && bmi < 29.9) {
+          status = "زيادة في الوزن";
+          color = "#f97316";
+          advice = "حاول تقليل السكريات وممارسة المشي يومياً.";
+        } else {
+          status = "سمنة";
+          color = "#ef4444";
+          advice = "يفضل استشارة طبيب لوضع خطة صحية مناسبة.";
+        }
+
+        // عرض النتيجة
+        document.getElementById("result").style.display = "block";
+        document.getElementById("score").innerText = bmi;
+        document.getElementById("status").innerText = status;
+        document.getElementById("status").style.color = color;
+        document.getElementById("advice").innerText = advice;
+      }
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>

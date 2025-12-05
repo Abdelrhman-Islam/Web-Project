@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تتبع الطلب #1055</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+        <link
+      rel="stylesheet"
+      href="./style.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --secondary: #115e59;
+        --bg: #f3f4f6;
+        --white: #fff;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: #333;
+      }
+
+      .navbar {
+        background: var(--white);
+        padding: 1rem 5%;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      .container {
+        max-width: 800px;
+        margin: 3rem auto;
+        padding: 0 1rem;
+      }
+
+      .track-card {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+      .order-info {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Timeline Styles */
+      .timeline {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #eee;
+        z-index: 0;
+      }
+
+      .step {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        width: 25%;
+      }
+      .step-icon {
+        width: 35px;
+        height: 35px;
+        background: #eee;
+        border-radius: 50%;
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+        transition: 0.3s;
+      }
+      .step-text {
+        font-size: 0.9rem;
+        color: #777;
+        font-weight: bold;
+      }
+      .step-date {
+        font-size: 0.8rem;
+        color: #999;
+        margin-top: 5px;
+        display: block;
+      }
+
+      /* Active State */
+      .step.active .step-icon {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 0 0 5px #ccfbf1;
+      }
+      .step.active .step-text {
+        color: var(--primary);
+      }
+      .step.active ~ .step .step-icon {
+        background: #eee;
+      } /* الخطوة اللي جاية لسه رمادي */
+
+      /* الخط الأخضر للخطوات المكتملة */
+      .progress-line {
+        position: absolute;
+        top: 15px;
+        right: 0;
+        height: 3px;
+        background: var(--primary);
+        width: 50%; /* غير النسبة دي عشان تتحكم في التقدم */
+        z-index: 0;
+        transition: 1s;
+      }
+
+      .delivery-guy {
+        text-align: center;
+        margin-top: 40px;
+        background: #f0fdfa;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px dashed var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+<nav class="navbar">
+    <a href="landing.html" class="logo">
+        <i class="fas fa-heartbeat"></i>
+        صيدليتي
+    </a>
+
+    <div class="search-box">
+        <input type="text" placeholder="ابحث عن دواء...">
+        <i class="fas fa-search" style="color: #999;"></i>
+    </div>
+
+    <div class="nav-icons">
+        <a href="profile.html">حسابي</a> 
+        
+        <a href="cart.html" class="cart-icon-link">
+            <i class="fas fa-shopping-cart" style="color:var(--secondary-color); font-size:1.2rem;"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+    </div>
+</nav>
+
+    <div class="container">
+      <div class="track-card">
+        <div class="order-info">
+          <div>
+            <h2 style="margin: 0">طلب رقم #1055</h2>
+            <p style="margin: 5px 0 0 0; color: #777">
+              تم الطلب: اليوم 10:30 ص
+            </p>
+          </div>
+          <div style="font-weight: bold; color: var(--primary)">
+            التوصيل المتوقع: 11:30 ص
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="progress-line"></div>
+          <div class="step active">
+            <div class="step-icon"><i class="fas fa-file-invoice"></i></div>
+            <div class="step-text">تم الاستلام</div>
+            <span class="step-date">10:30 ص</span>
+          </div>
+          <div class="step active">
+            <div class="step-icon"><i class="fas fa-box-open"></i></div>
+            <div class="step-text">جاري التجهيز</div>
+            <span class="step-date">10:45 ص</span>
+          </div>
+          <div class="step active">
+            <div class="step-icon"><i class="fas fa-motorcycle"></i></div>
+            <div class="step-text">خرج للتوصيل</div>
+            <span class="step-date">11:00 ص</span>
+          </div>
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-check"></i></div>
+            <div class="step-text">تم التسليم</div>
+            <span class="step-date">--:--</span>
+          </div>
+        </div>
+
+        <div class="delivery-guy">
+          <i
+            class="fas fa-user-astronaut"
+            style="
+              font-size: 2rem;
+              color: var(--secondary);
+              margin-bottom: 10px;
+            "
+          ></i>
+          <h3 style="margin: 0">الكابتن: محمد سمير</h3>
+          <p style="margin: 5px 0 15px 0; color: #666">
+            رقم الموبايل: 010xxxxxxxxx
+          </p>
+          <button
+            style="
+              background: var(--primary);
+              color: white;
+              border: none;
+              padding: 10px 20px;
+              border-radius: 50px;
+              cursor: pointer;
+            "
+          >
+            اتصل بالكابتن
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

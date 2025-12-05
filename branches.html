@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>فروعنا - صيدلية الشفاء</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+        <link
+      rel="stylesheet"
+      href="./style.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --bg: #f3f4f6;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: var(--bg);
+      }
+      .navbar {
+        background: white;
+        padding: 1rem 5%;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 3rem auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .branch-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-right: 5px solid var(--primary);
+      }
+      .branch-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .status-open {
+        color: green;
+        font-size: 0.8rem;
+        background: #dcfce7;
+        padding: 2px 8px;
+        border-radius: 10px;
+      }
+
+      .info-row {
+        display: flex;
+        gap: 10px;
+        color: #666;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+
+      .map-box {
+        background: #ddd;
+        height: 100%;
+        min-height: 400px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        font-size: 1.5rem;
+      }
+      /* .search-box {
+        display: flex;
+        background: #f0fdfa;
+        border: 1px solid #ccfbf1;
+        border-radius: 25px;
+        padding: 5px 15px;
+        width: 40%;
+      }
+
+      .search-box input {
+        border: none;
+        background: transparent;
+        width: 100%;
+        outline: none;
+        padding: 5px;
+      } */
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+        .map-box {
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+<nav class="navbar">
+    <a href="landing.html" class="logo">
+        <i class="fas fa-heartbeat"></i>
+        صيدليتي
+    </a>
+
+    <div class="search-box">
+        <input type="text" placeholder="ابحث عن دواء...">
+        <i class="fas fa-search" style="color: #999;"></i>
+    </div>
+
+    <div class="nav-icons">
+        <a href="profile.html">حسابي</a> 
+        
+        <a href="cart.html" class="cart-icon-link">
+            <i class="fas fa-shopping-cart" style="color:var(--secondary-color); font-size:1.2rem;"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+    </div>
+</nav>
+
+    <div class="container">
+      <div class="branches-list">
+        <h2 style="margin-bottom: 20px">أقرب فرع ليك</h2>
+
+        <div class="branch-card">
+          <div class="branch-title">
+            فرع مدينة نصر
+            <span class="status-open">مفتوح الآن</span>
+          </div>
+          <div class="info-row">
+            <i class="fas fa-map-marker-alt"></i> 15 شارع عباس العقاد، أمام
+            الحديقة الدولية
+          </div>
+          <div class="info-row"><i class="fas fa-phone"></i> 01012345678</div>
+          <div class="info-row"><i class="far fa-clock"></i> 24 ساعة</div>
+        </div>
+
+        <div class="branch-card">
+          <div class="branch-title">
+            فرع المهندسين
+            <span class="status-open">مفتوح الآن</span>
+          </div>
+          <div class="info-row">
+            <i class="fas fa-map-marker-alt"></i> 40 شارع جامعة الدول العربية
+          </div>
+          <div class="info-row"><i class="fas fa-phone"></i> 01122334455</div>
+          <div class="info-row">
+            <i class="far fa-clock"></i> 09:00 ص - 02:00 ص
+          </div>
+        </div>
+
+        <div class="branch-card">
+          <div class="branch-title">
+            فرع التجمع الخامس
+            <span class="status-open">مفتوح الآن</span>
+          </div>
+          <div class="info-row">
+            <i class="fas fa-map-marker-alt"></i> شارع التسعين الشمالي، مول
+            الداون تاون
+          </div>
+          <div class="info-row"><i class="fas fa-phone"></i> 01233445566</div>
+          <div class="info-row"><i class="far fa-clock"></i> 24 ساعة</div>
+        </div>
+      </div>
+
+      <div class="map-area">
+        <div class="map-box">
+          <i class="fas fa-map-marked-alt" style="margin-left: 10px"></i> خريطة
+          الفروع
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

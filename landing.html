@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>صيدلية الشفاء - الرئيسية</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* 1. إعدادات عامة ومتغيرات الألوان */
+      :root {
+        --primary-color: #0d9488; /* لون التيل (أخضر طبي) */
+        --secondary-color: #115e59; /* تيل غامق */
+        --accent-color: #fca5a5; /* لون خفيف للأكشن */
+        --text-color: #333;
+        --light-bg: #f3f4f6;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light-bg);
+        color: var(--text-color);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* 3. الهيرو سيكشن (Hero Section) */
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4rem 5%;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--white);
+        min-height: 500px;
+      }
+
+      .hero-content {
+        flex: 1;
+        padding-left: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      /* تعديل الأزرار عشان تبقى روابط */
+      .btn {
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        display: inline-flex; /* تغيير لـ inline-flex عشان نظبط الشكل */
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: none;
+        text-decoration: none; /* عشان الخط ميبانش */
+      }
+
+      .btn-primary {
+        background-color: var(--white);
+        color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--white);
+        background: transparent;
+        color: var(--white);
+      }
+
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        mix-blend-mode: normal;
+      }
+
+      /* 4. المميزات (Features) */
+      .features {
+        padding: 3rem 5%;
+        margin-top: -50px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .feature-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .icon-box {
+        width: 60px;
+        height: 60px;
+        background-color: #ccfbf1;
+        color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        margin: 0 auto 1rem auto;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding-top: 2rem;
+        }
+        .hero-content {
+          padding-left: 0;
+          margin-bottom: 2rem;
+        }
+        .hero-buttons {
+          justify-content: center;
+        }
+        .features {
+          margin-top: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="landing.html" class="logo">
+        <i class="fas fa-heartbeat"></i>
+        صيدليتي
+      </a>
+
+      <div class="search-box">
+        <input type="text" placeholder="ابحث عن دواء..." />
+        <i class="fas fa-search" style="color: #999"></i>
+      </div>
+
+      <div class="nav-icons">
+        <a href="bmi.html">BMI</a>
+        <a href="contact.html">تواصل معنا</a>
+        <a href="profile.html">حسابي</a>
+
+        <a href="cart.html" class="cart-icon-link">
+          <i
+            class="fas fa-shopping-cart"
+            style="color: var(--secondary-color); font-size: 1.2rem"
+          ></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-content">
+        <h1>
+          رعاية صحية متكاملة <br />
+          توصلك لحد باب البيت
+        </h1>
+        <p>
+          أكبر تشكيلة من الأدوية، الفيتامينات، ومستحضرات العناية بالبشرة. ارفع
+          الروشتة وسيب الباقي علينا.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="upload-prescription.html" class="btn btn-primary">
+            <i class="fas fa-file-upload"></i>
+            ارفع الروشتة
+          </a>
+
+          <a href="products.html" class="btn btn-outline"> تصفح المنتجات </a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://img.freepik.com/free-vector/delivery-service-with-masks-concept_23-2148505104.jpg?w=740"
+          alt="Pharmacy Delivery"
+        />
+      </div>
+    </header>
+
+    <section class="features">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon-box"><i class="fas fa-shipping-fast"></i></div>
+          <h3>توصيل سريع</h3>
+          <p>استلم طلبيتك خلال 60 دقيقة في أي مكان.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><i class="fas fa-user-md"></i></div>
+          <h3>استشارة صيدلي</h3>
+          <p>فريق من الصيادلة جاهز للرد على استفساراتك.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+          <h3>دفع آمن</h3>
+          <p>طرق دفع متعددة وآمنة أو الدفع عند الاستلام.</p>
+        </div>
+      </div>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>
