@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>من نحن - صيدلية الشفاء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body { background: #f9fafb; font-family: "Segoe UI", sans-serif; }
+      .navbar { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+      
+      .about-hero {
+        background: linear-gradient(rgba(13, 148, 136, 0.9), rgba(17, 94, 89, 0.9)), url('https://img.freepik.com/free-photo/pharmacist-chemists-working-pharmacy_23-2148005697.jpg');
+        background-size: cover; color: white; padding: 80px 20px; text-align: center;
+      }
+      .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+      
+      .story-section { background: white; padding: 40px; border-radius: 12px; display: flex; gap: 30px; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+      .story-text h2 { color: #0d9488; margin-bottom: 15px; }
+      .story-text p { line-height: 1.8; color: #555; }
+      .story-img { width: 100%; border-radius: 10px; }
+
+      .stats { display: flex; justify-content: space-between; margin-top: 40px; }
+      .stat-box { background: white; flex: 1; margin: 0 10px; padding: 20px; text-align: center; border-radius: 10px; border-bottom: 5px solid #0d9488; }
+      .stat-number { font-size: 2.5rem; font-weight: bold; color: #0d9488; }
+      
+      @media(max-width:768px){ .story-section{flex-direction: column;} .stats{flex-direction: column; gap: 20px;} }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="landing.html" class="logo"><i class="fas fa-heartbeat"></i> صيدليتي</a>
+      <a href="landing.html" style="font-weight:bold;">الرئيسية</a>
+    </nav>
+
+    <div class="about-hero">
+      <h1>قصتنا</h1>
+      <p>أكثر من مجرد صيدلية.. نحن شريكك في رحلة الشفاء</p>
+    </div>
+
+    <div class="container">
+      <div class="story-section">
+        <div class="story-text">
+          <h2>بدايتنا</h2>
+          <p>
+            تأسست صيدلية الشفاء عام 2010 برؤية واضحة: توفير الدواء والرعاية الصحية لكل مريض في أسرع وقت وبأعلى جودة. 
+            بدأنا بفرع صغير، واليوم نحن نخدم آلاف العملاء يومياً عبر فروعنا المنتشرة وتطبيقنا الإلكتروني.
+            <br><br>
+            نؤمن بأن الصيدلي ليس مجرد بائع للدواء، بل هو مستشار صحي أمين لعائلتك.
+          </p>
+        </div>
+        <div>
+           <img src="https://img.freepik.com/free-vector/pharmacy-concept-illustration_114360-3238.jpg" class="story-img" style="max-width:300px;">
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number">+15</div>
+          <div>عام من الخبرة</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">+50</div>
+          <div>فرع حول الجمهورية</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">24/7</div>
+          <div>خدمة عملاء</div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="main.js"></script>
+  </body>
+</html>

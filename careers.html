@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>انضم لفريقنا - وظائف خالية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body { background: #f3f4f6; font-family: "Segoe UI", sans-serif; }
+      .navbar { background: white; padding: 1rem 5%; }
+      .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+      
+      .job-card { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-right: 5px solid #0d9488; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+      .job-info h3 { margin: 0 0 5px; color: #333; }
+      .job-info span { color: #666; font-size: 0.9rem; margin-left: 10px; }
+      
+      .apply-btn { background: #0d9488; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+      .apply-btn:hover { background: #115e59; }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="landing.html" class="logo"><i class="fas fa-heartbeat"></i> صيدليتي</a>
+    </nav>
+
+    <div class="container">
+      <h1 style="text-align: center; color: #0d9488; margin-bottom: 40px;">انضم لعائلة الشفاء 💼</h1>
+
+      <div class="job-card">
+        <div class="job-info">
+          <h3>صيدلي (شيفت مسائي)</h3>
+          <div><i class="fas fa-map-marker-alt"></i> مدينة نصر</div>
+          <div><i class="fas fa-briefcase"></i> دوام كامل</div>
+        </div>
+        <button class="apply-btn" onclick="alert('تم استلام طلبك، سنتصل بك قريباً!')">قدم الآن</button>
+      </div>
+
+      <div class="job-card">
+        <div class="job-info">
+          <h3>موظف مبيعات (Telesales)</h3>
+          <div><i class="fas fa-map-marker-alt"></i> المقر الرئيسي</div>
+          <div><i class="fas fa-briefcase"></i> دوام كامل</div>
+        </div>
+        <button class="apply-btn" onclick="alert('تم استلام طلبك، سنتصل بك قريباً!')">قدم الآن</button>
+      </div>
+
+      <div class="job-card">
+        <div class="job-info">
+          <h3>طيار (Delivery)</h3>
+          <div><i class="fas fa-map-marker-alt"></i> التجمع الخامس</div>
+          <div><i class="fas fa-motorcycle"></i> دوام جزئي</div>
+        </div>
+        <button class="apply-btn" onclick="alert('تم استلام طلبك، سنتصل بك قريباً!')">قدم الآن</button>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
