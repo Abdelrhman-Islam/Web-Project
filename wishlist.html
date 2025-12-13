@@ -8,10 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="./style.css"
-    />
+    <link rel="stylesheet" href="./style.css" />
     <style>
       :root {
         --primary: #0d9488;
@@ -72,6 +69,12 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        transition: 0.2s;
+        z-index: 10;
+      }
+      .remove-icon:hover {
+        background: #ef4444;
+        color: white;
       }
 
       .img-box {
@@ -80,9 +83,20 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 10px;
+        overflow: hidden;
       }
       .img-box img {
         max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      h4 {
+        margin: 10px 0;
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .btn-move {
@@ -94,31 +108,36 @@
         border-radius: 6px;
         cursor: pointer;
         margin-top: 10px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .btn-move:hover {
+        background: #0f766e;
       }
 
     </style>
   </head>
   <body>
-<nav class="navbar">
-    <a href="landing.html" class="logo">
-        <i class="fas fa-heartbeat"></i>
-        صيدليتي
-    </a>
-
-    <div class="search-box">
-        <input type="text" placeholder="ابحث عن دواء...">
-        <i class="fas fa-search" style="color: #999;"></i>
-    </div>
-
-    <div class="nav-icons">
-        <a href="profile.html">حسابي</a> 
-        
-        <a href="cart.html" class="cart-icon-link">
-            <i class="fas fa-shopping-cart" style="color:var(--secondary-color); font-size:1.2rem;"></i>
-            <span class="cart-badge" id="cartBadge">0</span>
+    <nav class="navbar">
+        <a href="landing.html" class="logo" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; gap: 10px; align-items: center;">
+            <i class="fas fa-heartbeat"></i>
+            صيدليتي
         </a>
-    </div>
-</nav>
+
+        <div class="search-box" style="position: relative; display: flex; align-items: center; background: #f3f4f6; padding: 5px 15px; border-radius: 50px;">
+            <input type="text" placeholder="ابحث عن دواء..." style="border: none; background: transparent; outline: none; padding: 5px;">
+            <i class="fas fa-search" style="color: #999;"></i>
+        </div>
+
+        <div class="nav-icons" style="display: flex; gap: 20px; align-items: center;">
+            <a href="profile.html" style="font-weight: bold; color: #555;">حسابي</a> 
+            
+            <a href="cart.html" class="cart-icon-link" style="position: relative; display: flex; align-items: center;">
+                <i class="fas fa-shopping-cart" style="color:var(--primary); font-size:1.2rem;"></i>
+                <span class="cart-badge" id="cartBadge" style="background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; position: absolute; top: -8px; right: -8px;">0</span>
+            </a>
+        </div>
+    </nav>
 
     <div class="container">
       <h2
@@ -127,47 +146,82 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          color: #333;
         "
       >
         <i class="fas fa-heart" style="color: #ef4444"></i> المنتجات المفضلة
       </h2>
 
-      <div class="wishlist-grid">
-        <div class="product-card">
-          <div class="remove-icon"><i class="fas fa-times"></i></div>
-          <div class="img-box">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3050/3050252.png"
-            />
-          </div>
-          <h4>واقي شمس 50+</h4>
-          <div style="font-weight: bold; color: var(--primary)">480 ج.م</div>
-          <button
-            class="btn-move"
-            onclick="addToCart('wish1', 'واقي شمس 50+', 480, 'https://cdn-icons-png.flaticon.com/512/3050/3050252.png')"
-          >
-            نقل للسلة
-          </button>
+      <div class="wishlist-grid" id="wishlistContainer">
         </div>
-
-        <div class="product-card">
-          <div class="remove-icon"><i class="fas fa-times"></i></div>
-          <div class="img-box">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3557/3557455.png"
-            />
-          </div>
-          <h4>شامبو ضد القشرة</h4>
-          <div style="font-weight: bold; color: var(--primary)">110 ج.م</div>
-          <button
-            class="btn-move"
-            onclick="addToCart('wish1', 'واقي شمس 50+', 480, 'https://cdn-icons-png.flaticon.com/512/3050/3050252.png')"
-          >
-            نقل للسلة
-          </button>
-        </div>
-      </div>
     </div>
+
     <script src="main.js"></script>
+
+    <script>
+      // كود خاص بصفحة المفضلة
+      document.addEventListener('DOMContentLoaded', () => {
+        renderWishlist();
+      });
+
+      function renderWishlist() {
+        const container = document.getElementById('wishlistContainer');
+        const favs = getFavorites(); // دالة موجودة في main.js
+
+        container.innerHTML = '';
+
+        if (favs.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: #666;">
+                <i class="far fa-heart" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                <p>قائمة المفضلة فارغة حالياً</p>
+                <a href="products.html" style="color: var(--primary); font-weight: bold; margin-top: 10px; display: inline-block;">تصفح المنتجات</a>
+            </div>
+          `;
+          return;
+        }
+
+        favs.forEach(product => {
+          container.innerHTML += `
+            <div class="product-card">
+              <div class="remove-icon" onclick="removeFromWishlist(${product.id})" title="حذف من المفضلة">
+                <i class="fas fa-times"></i>
+              </div>
+              <div class="img-box">
+                <img src="${product.image}" alt="${product.name}" />
+              </div>
+              <h4>${product.name}</h4>
+              <div style="font-weight: bold; color: var(--primary)">${product.price} ج.م</div>
+              <button
+                class="btn-move"
+                onclick="moveItemToCart(${product.id})"
+              >
+                نقل للسلة
+              </button>
+            </div>
+          `;
+        });
+      }
+
+      function removeFromWishlist(id) {
+        let favs = getFavorites();
+        favs = favs.filter(p => p.id !== id);
+        saveFavorites(favs); // دالة موجودة في main.js
+        
+        // إعادة رسم الصفحة لتحديث العرض
+        renderWishlist(); 
+      }
+
+      function moveItemToCart(id) {
+        // 1. إضافة للسلة (باستخدام الدالة الموجودة في main.js)
+        addToCart(id);
+        
+        // 2. حذف من المفضلة
+        removeFromWishlist(id);
+        
+        // 3. تنبيه بسيط (اختياري)
+        // alert('تم نقل المنتج إلى السلة'); 
+      }
+    </script>
   </body>
 </html>

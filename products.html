@@ -24,7 +24,18 @@
         /* Product Grid */
         .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        .product-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid transparent; }
+        
+        .product-card { 
+            background: var(--white); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+            transition: 0.3s; 
+            display: flex; 
+            flex-direction: column; 
+            border: 1px solid transparent; 
+            position: relative; /* مهم عشان الأيقونة */
+        }
         .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         
         .img-link { display: block; width: 100%; background: #fff; border-bottom: 1px solid #f0f0f0; }
@@ -36,7 +47,39 @@
         .price-box { margin-top: auto; margin-bottom: 15px; font-weight: bold; color: var(--primary); font-size: 1.2rem; }
         .add-btn { width: 100%; padding: 10px; background: var(--white); color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .add-btn:hover { background: var(--primary); color: var(--white); }
-        
+
+        /* أيقونة المفضلة */
+        .fav-icon {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 35px;
+          height: 35px;
+          background: #fff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          color: #9ca3af; /* رمادي */
+          cursor: pointer;
+          z-index: 30;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+          transition: all 0.25s ease;
+        }
+
+        /* hover */
+        .fav-icon:hover {
+          transform: scale(1.1);
+          color: #ef4444;
+        }
+
+        /* active (متضافة للمفضلة) */
+        .fav-icon.active {
+          background: #fee2e2;
+          color: #ef4444;
+        }
+
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 15px; } }
     </style>
 </head>
@@ -45,6 +88,7 @@
     <nav class="navbar">
         <a href="landing.html" class="logo"><i class="fas fa-heartbeat"></i> صيدليتي</a>
         <div class="nav-icons">
+            <a href="wishlist.html" title="المفضلة"><i class="fas fa-heart wishlist-icon"></i></a>
             <a href="profile.html">حسابي</a>
             <a href="cart.html" style="position: relative;">
                 <i class="fas fa-shopping-cart" style="color: var(--secondary); font-size: 1.2rem;"></i>
@@ -57,7 +101,9 @@
         <h2 style="margin-bottom: 20px; color: var(--secondary); border-right: 5px solid var(--primary); padding-right: 15px;">أحدث المنتجات</h2>
         
         <div class="products-grid">
-            <article class="product-card">
+            
+            <article class="product-card" data-id="1">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=1" class="img-link">
                     <img src="https://m.media-amazon.com/images/I/71p4qX085mL._AC_SX679_.jpg" class="product-img">
                 </a>
@@ -67,8 +113,9 @@
                     <button class="add-btn" onclick="addToCart(1)"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
                 </div>
             </article>
-
-            <article class="product-card">
+            
+            <article class="product-card" data-id="2">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=2" class="img-link">
                     <img src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/ala/ala30202/l/37.jpg" class="product-img">
                 </a>
@@ -79,7 +126,8 @@
                 </div>
             </article>
 
-            <article class="product-card">
+            <article class="product-card" data-id="3">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=3" class="img-link">
                     <img src="https://m.media-amazon.com/images/I/61ofCkBUfvL._AC_SX679_.jpg" class="product-img">
                 </a>
@@ -90,7 +138,8 @@
                 </div>
             </article>
 
-            <article class="product-card">
+            <article class="product-card" data-id="4">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=4" class="img-link">
                     <img src="https://icare.ps/upload/11-2023/product/IMG_0509-IDX.png" class="product-img">
                 </a>
@@ -101,7 +150,8 @@
                 </div>
             </article>
 
-             <article class="product-card">
+            <article class="product-card" data-id="5">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=5" class="img-link">
                     <img src="https://m.media-amazon.com/images/I/61lmX6D-dOL._AC_SX522_.jpg" class="product-img">
                 </a>
@@ -112,7 +162,8 @@
                 </div>
             </article>
 
-            <article class="product-card">
+            <article class="product-card" data-id="6">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=6" class="img-link">
                     <img src="https://m.media-amazon.com/images/I/61sUR1qP-EL._AC_SY741_.jpg" class="product-img">
                 </a>
@@ -123,7 +174,8 @@
                 </div>
             </article>
 
-            <article class="product-card">
+            <article class="product-card" data-id="7">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=7" class="img-link">
                     <img src="https://dwaprices.com/upload/1739098230.jpg" class="product-img">
                 </a>
@@ -134,7 +186,8 @@
                 </div>
             </article>
 
-            <article class="product-card">
+            <article class="product-card" data-id="8">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=8" class="img-link">
                     <img src="https://m.media-amazon.com/images/I/51eaJXWkDFL._AC_SX522_.jpg" class="product-img">
                 </a>
@@ -145,8 +198,9 @@
                 </div>
             </article>
 
-            <article class="product-card">
-                <span style="position: absolute; top:10px; right:10px; background:#ef4444; color:white; padding:4px 10px; border-radius:20px; font-size:0.8rem; font-weight:bold; z-index:10;">-15%</span>
+            <article class="product-card" data-id="9">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
+                <span style="position: absolute; top:10px; left:10px; right:auto; background:#ef4444; color:white; padding:4px 10px; border-radius:20px; font-size:0.8rem; font-weight:bold; z-index:10;">-15%</span>
                 <a href="product-details.html?id=9" class="img-link">
                     <img src="https://cdn.chefaa.com/filters:format(webp)/fit-in/718x718/public/uploads/products/1593946862vitamin-omega-3-fish-oiljpg" class="product-img">
                 </a>
@@ -160,7 +214,8 @@
                 </div>
             </article>
 
-            <article class="product-card">
+            <article class="product-card" data-id="10">
+                <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
                 <a href="product-details.html?id=10" class="img-link">
                     <img src="https://citypharmaeg.com/wp-content/uploads/2024/10/IMG-20241002-WA0031.jpg" class="product-img">
                 </a>

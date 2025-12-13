@@ -2,54 +2,64 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>العروض الحصرية - صيدلية الشفاء</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-        <link
-      rel="stylesheet"
-      href="./style.css"
-    />
+    <link rel="stylesheet" href="./style.css" />
     <style>
       :root {
         --primary: #0d9488;
+        --secondary: #115e59;
         --danger: #ef4444;
         --bg: #f3f4f6;
+        --white: #fff;
       }
       body {
         margin: 0;
         font-family: "Segoe UI", sans-serif;
         background: var(--bg);
+        color: #333;
       }
+      a { text-decoration: none; color: inherit; }
+
+      /* Navbar */
       .navbar {
-        background: white;
+        background: var(--white);
         padding: 1rem 5%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
+      /* Banner */
       .banner {
-        background: linear-gradient(45deg, #ff6b6b, #ee5253);
+        background: linear-gradient(135deg, #ff6b6b, #ee5253);
         color: white;
-        padding: 40px;
+        padding: 60px 20px;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        border-radius: 0 0 30px 30px;
+        box-shadow: 0 10px 30px rgba(238, 82, 83, 0.3);
       }
       .banner h1 {
-        margin: 0;
-        font-size: 2.5rem;
+        margin: 0 0 15px;
+        font-size: 3rem;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.1);
       }
       .banner p {
-        font-size: 1.2rem;
-        margin-top: 10px;
+        font-size: 1.3rem;
+        margin: 0;
+        opacity: 0.95;
       }
 
+      /* Grid */
       .container {
         max-width: 1100px;
         margin: 0 auto;
@@ -57,153 +67,237 @@
       }
       .offers-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 25px;
       }
 
+      /* Offer Card */
       .offer-card {
         background: white;
-        border-radius: 12px;
+        border-radius: 15px;
         padding: 15px;
         position: relative;
         border: 2px solid transparent;
         transition: 0.3s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        overflow: hidden;
       }
       .offer-card:hover {
         border-color: var(--danger);
         transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
       }
 
       .discount-tag {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 15px;
+        left: 15px;
         background: var(--danger);
         color: white;
-        padding: 5px 10px;
+        padding: 5px 12px;
         border-radius: 20px;
         font-weight: bold;
         font-size: 0.9rem;
         z-index: 10;
+        box-shadow: 0 2px 10px rgba(239, 68, 68, 0.4);
       }
 
+      .img-link {
+        display: block;
+        height: 200px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       .product-img {
-        width: 100%;
-        height: 180px;
+        max-height: 100%;
+        max-width: 100%;
         object-fit: contain;
+        transition: 0.3s;
+      }
+      .offer-card:hover .product-img {
+        transform: scale(1.05);
+      }
+
+      h3 { margin: 10px 0; font-size: 1.1rem; color: #444; }
+
+      .price-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         margin-bottom: 15px;
       }
       .old-price {
         text-decoration: line-through;
         color: #999;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
       }
       .new-price {
         color: var(--danger);
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: bold;
-        margin-right: 10px;
       }
 
       .btn-add {
         width: 100%;
-        background: var(--danger);
-        color: white;
-        padding: 10px;
-        border: none;
-        border-radius: 6px;
+        background: white;
+        color: var(--danger);
+        padding: 12px;
+        border: 2px solid var(--danger);
+        border-radius: 8px;
         font-weight: bold;
         cursor: pointer;
-        margin-top: 10px;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .btn-add:hover {
+        background: var(--danger);
+        color: white;
       }
 
+      /* Fav Icon Styling (Same as Products page) */
+      .fav-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #9ca3af;
+        cursor: pointer;
+        z-index: 20;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.2s ease;
+      }
+      .fav-icon:hover { color: var(--danger); transform: scale(1.1); }
+      .fav-icon.active { color: var(--danger); background: #fee2e2; }
+
+      @media (max-width: 768px) {
+        .navbar { flex-direction: column; gap: 15px; }
+        .banner { padding: 40px 20px; }
+        .banner h1 { font-size: 2rem; }
+      }
     </style>
   </head>
   <body>
-<nav class="navbar">
-    <a href="landing.html" class="logo">
-        <i class="fas fa-heartbeat"></i>
-        صيدليتي
-    </a>
-
-    <div class="search-box">
-        <input type="text" placeholder="ابحث عن دواء...">
-        <i class="fas fa-search" style="color: #999;"></i>
-    </div>
-
-    <div class="nav-icons">
-        <a href="profile.html">حسابي</a> 
-        
-        <a href="cart.html" class="cart-icon-link">
-            <i class="fas fa-shopping-cart" style="color:var(--secondary-color); font-size:1.2rem;"></i>
-            <span class="cart-badge" id="cartBadge">0</span>
+    
+    <nav class="navbar">
+        <a href="landing.html" class="logo" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; gap: 10px; align-items: center;">
+            <i class="fas fa-heartbeat"></i> صيدليتي
         </a>
-    </div>
-</nav>
+
+        <div class="search-box" style="position: relative; display: flex; align-items: center; background: #f3f4f6; padding: 5px 15px; border-radius: 50px; width: 300px; max-width: 100%;">
+            <input type="text" placeholder="ابحث عن دواء..." style="border: none; background: transparent; outline: none; padding: 5px; width: 100%;">
+            <i class="fas fa-search" style="color: #999;"></i>
+        </div>
+
+        <div class="nav-icons" style="display: flex; gap: 20px; align-items: center;">
+            <a href="wishlist.html" title="المفضلة"><i class="fas fa-heart wishlist-icon"></i></a>
+            <a href="profile.html" style="font-weight: bold; color: #555;">حسابي</a> 
+            <a href="cart.html" style="position: relative; display: flex; align-items: center;">
+                <i class="fas fa-shopping-cart" style="color:var(--secondary); font-size:1.2rem;"></i>
+                <span class="cart-badge" id="cartBadge" style="background: var(--danger); color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; position: absolute; top: -8px; right: -8px;">0</span>
+            </a>
+        </div>
+    </nav>
 
     <div class="banner">
-      <h1>🔥 عروض الجمعة البيضاء 🔥</h1>
-      <p>خصومات تصل إلى 50% على مستحضرات التجميل والفيتامينات</p>
+      <h1>🔥 عروض الجمعة البيضاء</h1>
+      <p>خصومات حصرية تصل إلى 50% لفترة محدودة</p>
     </div>
 
     <div class="container">
       <div class="offers-grid">
-        <div class="offer-card">
-          <div class="discount-tag">-25%</div>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3050/3050252.png"
-            class="product-img"
-          />
-          <h3>مجموعة العناية بالبشرة</h3>
-          <div>
-            <span class="old-price">600 ج.م</span>
-            <span class="new-price">450 ج.م</span>
-          </div>
-          <button
-            class="btn-add"
-            onclick="addToCart('offer1', 'مجموعة العناية', 450, 'https://cdn-icons-png.flaticon.com/512/3050/3050252.png')"
-          >
-            ألحق العرض
-          </button>
-        </div>
-
-        <div class="offer-card">
-          <div class="discount-tag">-50%</div>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3209/3209968.png"
-            class="product-img"
-          />
-          <h3>فيتامينات مستوردة</h3>
-          <div>
-            <span class="old-price">300 ج.م</span>
-            <span class="new-price">150 ج.م</span>
-          </div>
-          <button
-            class="btn-add"
-            onclick="addToCart('offer2', 'فيتامينات', 150, 'https://cdn-icons-png.flaticon.com/512/3209/3209968.png')"
-          >
-            ألحق العرض
-          </button>
-        </div>
-
-        <div class="offer-card">
+        
+        <div class="offer-card" data-id="9">
           <div class="discount-tag">-15%</div>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3557/3557455.png"
-            class="product-img"
-          />
-          <h3>شامبو طبيعي</h3>
-          <div>
-            <span class="old-price">120 ج.م</span>
-            <span class="new-price">100 ج.م</span>
+          <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
+          
+          <a href="product-details.html?id=9" class="img-link">
+            <img src="https://cdn.chefaa.com/filters:format(webp)/fit-in/718x718/public/uploads/products/1593946862vitamin-omega-3-fish-oiljpg" class="product-img" />
+          </a>
+          
+          <a href="product-details.html?id=9"><h3>أوميجا 3 بلس - لصحة القلب</h3></a>
+          
+          <div class="price-container">
+            <span class="new-price">180 ج.م</span>
+            <span class="old-price">210 ج.م</span>
           </div>
-          <button
-            class="btn-add"
-            onclick="addToCart('offer3', 'شامبو طبيعي', 100, 'https://cdn-icons-png.flaticon.com/512/3557/3557455.png')"
-          >
-            ألحق العرض
+          
+          <button class="btn-add" onclick="addToCart(9)">
+            <i class="fas fa-bolt"></i> ألحق العرض
           </button>
         </div>
+
+        <div class="offer-card" data-id="4">
+          <div class="discount-tag">-20%</div>
+          <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
+
+          <a href="product-details.html?id=4" class="img-link">
+            <img src="https://icare.ps/upload/11-2023/product/IMG_0509-IDX.png" class="product-img" />
+          </a>
+
+          <a href="product-details.html?id=4"><h3>واقي شمس 50+ (حماية قصوى)</h3></a>
+          
+          <div class="price-container">
+            <span class="new-price">480 ج.م</span>
+            <span class="old-price">600 ج.م</span>
+          </div>
+          
+          <button class="btn-add" onclick="addToCart(4)">
+            <i class="fas fa-bolt"></i> ألحق العرض
+          </button>
+        </div>
+
+        <div class="offer-card" data-id="8">
+            <div class="discount-tag">-25%</div>
+            <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
+  
+            <a href="product-details.html?id=8" class="img-link">
+              <img src="https://m.media-amazon.com/images/I/51eaJXWkDFL._AC_SX522_.jpg" class="product-img" />
+            </a>
+  
+            <a href="product-details.html?id=8"><h3>شامبو طبي ضد القشرة</h3></a>
+            
+            <div class="price-container">
+              <span class="new-price">110 ج.م</span>
+              <span class="old-price">150 ج.م</span>
+            </div>
+            
+            <button class="btn-add" onclick="addToCart(8)">
+              <i class="fas fa-bolt"></i> ألحق العرض
+            </button>
+          </div>
+
+          <div class="offer-card" data-id="2">
+            <div class="discount-tag">-10%</div>
+            <i class="fas fa-heart fav-icon" onclick="toggleFavorite(this)"></i>
+  
+            <a href="product-details.html?id=2" class="img-link">
+              <img src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/ala/ala30202/l/37.jpg" class="product-img" />
+            </a>
+  
+            <a href="product-details.html?id=2"><h3>فيتامين سي فوار (مناعة أقوى)</h3></a>
+            
+            <div class="price-container">
+              <span class="new-price">90 ج.م</span>
+              <span class="old-price">100 ج.م</span>
+            </div>
+            
+            <button class="btn-add" onclick="addToCart(2)">
+              <i class="fas fa-bolt"></i> ألحق العرض
+            </button>
+          </div>
+
       </div>
     </div>
 

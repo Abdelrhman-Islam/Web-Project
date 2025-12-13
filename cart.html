@@ -3,260 +3,212 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>السلة - صيدلية الشفاء</title>
+    <title>سلة المشتريات - صيدلية الشفاء</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-        <link
-      rel="stylesheet"
-      href="./style.css"
-    />
+    <link rel="stylesheet" href="./style.css" />
     <style>
       :root {
         --primary: #0d9488;
         --secondary: #115e59;
-        --text: #333;
         --bg: #f3f4f6;
         --white: #fff;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", sans-serif;
+        --danger: #ef4444;
       }
       body {
-        background-color: var(--bg);
-        color: var(--text);
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: #333;
       }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-
-      /* Navbar */
       .navbar {
         background: var(--white);
         padding: 1rem 5%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       }
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--primary);
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      .nav-icons {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-      }
-      .cart-icon {
-        position: relative;
-        font-size: 1.2rem;
-        color: var(--secondary);
-      }
-      .cart-badge {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background: #ef4444;
-        color: white;
-        font-size: 0.7rem;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+      a { text-decoration: none; color: inherit; }
 
-      /* Cart Styles */
       .container {
-        max-width: 1100px;
-        margin: 2rem auto;
+        max-width: 1000px;
+        margin: 3rem auto;
         padding: 0 1rem;
         display: flex;
-        gap: 2rem;
-        align-items: flex-start;
-      }
-      .cart-items {
-        flex: 2;
-        background: var(--white);
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      }
-      .cart-summary {
-        flex: 1;
-        background: var(--white);
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        position: sticky;
-        top: 90px;
+        gap: 30px;
+        flex-wrap: wrap;
       }
 
+      /* قسم المنتجات */
+      .cart-section {
+        flex: 2;
+        min-width: 300px;
+      }
+
+      /* تنسيق العناصر التي يولدها الجافاسكريبت */
       .cart-item {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
         display: flex;
         align-items: center;
-        gap: 15px;
-        padding: 15px 0;
-        border-bottom: 1px solid #f0f0f0;
+        justify-content: space-between;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        transition: 0.3s;
       }
-      .item-img {
-        width: 70px;
-        height: 70px;
+      .cart-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      }
+      
+      .cart-item img {
+        width: 80px;
+        height: 80px;
         object-fit: contain;
-        border: 1px solid #eee;
         border-radius: 8px;
+        border: 1px solid #eee;
+        margin-left: 15px;
       }
+      
       .item-details {
         flex: 1;
       }
-      .item-name {
-        font-weight: bold;
-        font-size: 1rem;
+      .item-details h4 {
+        margin: 0 0 5px;
+        font-size: 1.1rem;
+        color: var(--secondary);
       }
-      .quantity-box {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 2px 8px;
-      }
-      .qty-btn {
-        background: none;
-        border: none;
-        color: var(--primary);
-        font-size: 1.2rem;
-        cursor: pointer;
-      }
-      .qty-input {
-        width: 30px;
-        text-align: center;
-        border: none;
-        font-weight: bold;
-      }
-      .remove-btn {
-        color: #ef4444;
-        background: none;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        margin-left: 10px;
-      }
-      .item-price {
-        font-weight: bold;
-        color: var(--primary);
+      .item-details p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
       }
 
+      .remove-btn {
+        background: #fee2e2;
+        color: var(--danger);
+        border: none;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+        font-size: 1rem;
+      }
+      .remove-btn:hover {
+        background: var(--danger);
+        color: white;
+      }
+
+      /* ملخص الطلب */
+      .summary-section {
+        flex: 1;
+        min-width: 250px;
+        height: fit-content;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 100px;
+      }
+      .summary-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+      }
       .summary-row {
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
+        color: #666;
       }
       .total-row {
-        border-top: 2px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
         padding-top: 15px;
+        border-top: 2px dashed #eee;
         font-weight: bold;
         font-size: 1.2rem;
-        margin-top: 20px;
         color: var(--primary);
       }
       .checkout-btn {
         width: 100%;
         background: var(--primary);
         color: white;
-        padding: 15px;
         border: none;
+        padding: 12px;
         border-radius: 8px;
+        font-size: 1rem;
         font-weight: bold;
         cursor: pointer;
         margin-top: 20px;
+        transition: 0.3s;
       }
       .checkout-btn:hover {
         background: var(--secondary);
       }
-      @media (max-width: 768px) {
-        .container {
-          flex-direction: column;
-        }
-        .cart-summary {
-          width: 100%;
-        }
-      }
+
     </style>
   </head>
   <body>
-<nav class="navbar">
-    <a href="landing.html" class="logo">
-        <i class="fas fa-heartbeat"></i>
-        صيدليتي
-    </a>
-
-    <div class="search-box">
-        <input type="text" placeholder="ابحث عن دواء...">
-        <i class="fas fa-search" style="color: #999;"></i>
-    </div>
-
-    <div class="nav-icons">
-        <a href="profile.html">حسابي</a> 
-        
-        <a href="cart.html" class="cart-icon-link">
-            <i class="fas fa-shopping-cart" style="color:var(--secondary-color); font-size:1.2rem;"></i>
-            <span class="cart-badge" id="cartBadge">0</span>
+    
+    <nav class="navbar">
+        <a href="landing.html" class="logo" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; gap: 10px; align-items: center;">
+            <i class="fas fa-heartbeat"></i> صيدليتي
         </a>
-    </div>
-</nav>
+
+        <div class="nav-icons" style="display: flex; gap: 20px;">
+            <a href="wishlist.html" title="المفضلة"><i class="fas fa-heart wishlist-icon"></i></a>
+            <a href="profile.html" style="font-weight: bold; color: #555;">حسابي</a> 
+            <a href="cart.html" style="position: relative;">
+                <i class="fas fa-shopping-cart" style="color:var(--primary); font-size:1.2rem;"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+        </div>
+    </nav>
 
     <div class="container">
-      <div class="cart-items">
-        <h2
-          style="
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-          "
-        >
-          سلة المشتريات
-        </h2>
-        <div class="cart-items-container"></div>
+      
+      <div class="cart-section">
+        <h2 style="margin-bottom: 20px;"><i class="fas fa-shopping-bag"></i> سلة المشتريات</h2>
+        <div class="cart-items-container">
+            </div>
       </div>
 
-      <div class="cart-summary">
-        <h2 style="margin-bottom: 15px">ملخص الطلب</h2>
+      <div class="summary-section">
+        <div class="summary-title">ملخص الطلب</div>
         <div class="summary-row">
-          <span>المجموع الفرعي</span>
-          <span class="subtotal-display">0 ج.م</span>
+            <span>المجموع الفرعي</span>
+            <span id="subtotal">0 ج.م</span>
         </div>
         <div class="summary-row">
-          <span>مصاريف التوصيل</span>
-          <span>20 ج.م</span>
+            <span>التوصيل</span>
+            <span>20 ج.م</span>
         </div>
-        <div class="summary-row total-row">
-          <span>الإجمالي</span>
-          <span class="total-price-display">0 ج.م</span>
+        <div class="total-row">
+            <span>الإجمالي</span>
+            <span id="totalPrice">0 ج.م</span>
         </div>
-        <button
-          class="checkout-btn"
-          onclick="window.location.href='checkout.html'"
-        >
-          متابعة عملية الشراء
-        </button>
-      </div>
+        <span>
+          <a href="./checkout.html">
+              <button class="checkout-btn" onclick="alert('جاري التحويل للدفع...')">
+               إتمام الشراء 
+          </span>
+              <i class="fas fa-check"></i></button>
+            </a>
+            </div>
+
     </div>
 
     <script src="main.js"></script>
